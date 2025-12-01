@@ -4,8 +4,6 @@ import dotenv from "dotenv";
 import { DB } from './config/db.js';
 dotenv.config();
 
-
-const arr = ["a", "b", "c"]
 app.get("/", (req, res) => {
   res.send("Home")
 })
