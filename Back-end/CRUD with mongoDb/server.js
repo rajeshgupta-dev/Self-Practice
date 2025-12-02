@@ -38,6 +38,30 @@ app.post("/create", async (req, res) => {
   }
 })
 
+app.delete("/user/:id", async (req, res) => {
+  const { id } = req.params;
+  try {
+    const deletedUser = await userModel.findByIdAndDelete(id);
+    if (!deletedUser) {
+      return res.status(404).send({
+        success: false,
+        message: "User not Found",
+      })
+    }
+
+    res.status(200).send({
+      success: true,
+      message: "User Deleted succefully",
+      deletedUser
+    })
+  } catch (error) {
+    res.status(404).send({
+      success: false,
+      message: "Something went wrong"
+    })
+  }
+})
+
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
