@@ -11,6 +11,31 @@ app.get("/", (req, res) => {
   res.send("Home")
 })
 
+// ===============================GET ALL USER =====================================
+app.get("/user", async (req, res) => {
+  try {
+    const allUser = await userModel.find();
+    if (allUser === 0) {
+      return res.status(404).send({
+        success: false,
+        message: "User not found yet"
+      });
+    }
+    res.status(200).send({
+      success: true,
+      message: "All user found",
+      allUser
+    })
+  } catch (error) {
+    res.status(500).send({
+      success: false,
+      message: "Server Error"
+    })
+  }
+})
+
+
+// ======================= CREATE USER==========================
 app.post("/create", async (req, res) => {
   try {
 
