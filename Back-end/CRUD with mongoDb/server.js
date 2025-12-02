@@ -63,6 +63,7 @@ app.post("/create", async (req, res) => {
   }
 })
 
+// ==============================DELETE USER BY ID=====================================
 app.delete("/user/:id", async (req, res) => {
   const { id } = req.params;
   try {
