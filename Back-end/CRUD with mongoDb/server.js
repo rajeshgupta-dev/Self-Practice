@@ -15,12 +15,26 @@ app.post("/create", async (req, res) => {
   try {
 
     const { name, age } = req.body;
+    if (!name || !age) {
+      res.status(405).send({
+        success: false,
+        message: "all field required"
+      })
+    }
     const newUser = await userModel.create({ name, age });
+    newUser.save();
 
-    res.status(200).send(newUser);
+    res.status(200).send({
+      success: true,
+      message: "User create succefully"
+    });
     console.log("user reate succefully")
   } catch (error) {
     console.log("error to create", error)
+    res.status(404).send({
+      success: false,
+      message: "Something went wrong"
+    })
   }
 })
 
