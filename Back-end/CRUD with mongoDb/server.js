@@ -34,6 +34,37 @@ app.get("/user", async (req, res) => {
   }
 })
 
+// =====================================GET USER BY ID (SINGLE USER) =========================
+
+app.get("/user/:id", async(req, res) => {
+
+  const { id } = req.params;
+
+  try {
+    const singleUser = await userModel.findById(id);
+
+    if (!singleUser) {
+      return res.status(404).send({
+        success: false,
+        message: "User not Found"
+      }); 
+    }
+
+    res.status(200).send({
+      success: true,
+      message: "User Found",
+      singleUser
+    });
+
+  } catch (error) {
+    res.status(500).send({
+      success: false,
+      message: "server error",
+      error: error.message
+    });
+
+  }
+})
 
 // ======================= CREATE USER==========================
 app.post("/create", async (req, res) => {
