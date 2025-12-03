@@ -36,7 +36,7 @@ app.get("/user", async (req, res) => {
 
 // =====================================GET USER BY ID (SINGLE USER) =========================
 
-app.get("/user/:id", async(req, res) => {
+app.get("/user/:id", async (req, res) => {
 
   const { id } = req.params;
 
@@ -47,7 +47,7 @@ app.get("/user/:id", async(req, res) => {
       return res.status(404).send({
         success: false,
         message: "User not Found"
-      }); 
+      });
     }
 
     res.status(200).send({
@@ -118,6 +118,33 @@ app.delete("/user/:id", async (req, res) => {
     })
   }
 })
+
+// ============================== UPDATE USER =======================================
+app.patch("/user/:id", async (req, res) => {
+  const { id } = req.params;
+  const dataForUpdate = req.body;
+  try {
+    const updatedUser = await userModel.findByIdAndUpdate(id, dataForUpdate, { new: true, runValidators: true });
+    if (!updatedUser) {
+      return res.status(404).send({
+        success: false,
+        message: "User Not Found"
+      })
+    }
+    res.status(200).send({
+      sucees: true,
+      message: "User Updated SUccessfully",
+      updatedUser
+    })
+  } catch (error) {
+    res.status(500).send({
+      success: false,
+      message: "Something went wrong"
+    })
+  }
+
+})
+
 
 
 const PORT = process.env.PORT || 3000;
