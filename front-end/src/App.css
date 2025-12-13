@@ -1,0 +1,85 @@
+body {
+  background-color: #1B211A;
+  color: aliceblue;
+}
+
+/* data display  */
+.product-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+  padding: 10px;
+  text-align: center;
+}
+
+.product-card {
+  background-color: #37353E;
+  padding: 0.5rem;
+  border-radius: 8px;
+}
+
+/* .product-card:hover {
+  transform: scale(1.08);
+  transition: transform 0.3s ease;
+} */
+
+.product-card img {
+  width: 100%;
+  object-fit: contain;
+
+}
+
+/* pagination  */
+.pagination-container {
+  background-color: #37353E;
+  margin: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn {
+  padding: 2px 8px;
+  border: 1px solid white;
+  margin: 10px;
+  cursor: pointer;
+  align-items: center;
+}
+
+.btn:active {
+  background-color: #111211;
+}
+
+.active {
+  background-color: gold;
+  padding: 2px 8px;
+  border: 1px solid rgb(185, 182, 182);
+  margin: 10px;
+  cursor: pointer;
+  align-items: center;
+  color: #1B211A;
+}
+
+/* search by title */
+.seach-input {
+  background-color: #111211;
+  padding: 10px;
+  text-align: center;
+}
+
+.seach-input input {
+  border: 1px solid white;
+  padding: 3px 9px;
+  border-radius: 4px;
+}
+
+/* sorting by title  */
+.select {
+  background-color: #111211;
+  border: 1px solid white;
+  border-radius: 4px;
+  padding: 3px 9px;
+  margin-left: 8px;
+  outline: none;
+}
